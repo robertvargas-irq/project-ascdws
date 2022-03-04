@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     private BoxCollider2D boxCollider;
     private Vector3 moveDelta;
     private RaycastHit2D hit;
+    public float moveMultiplier = 1;
 
     // Start is called before the first frame update
     private void Start()
@@ -35,14 +36,14 @@ public class Player : MonoBehaviour
             boxCollider.size,
             0,
             new Vector2(0, moveDelta.y),
-            Mathf.Abs(moveDelta.y * Time.deltaTime),
+            Mathf.Abs(moveDelta.y * moveMultiplier * Time.deltaTime),
             LayerMask.GetMask("Actor", "Blocking")
         );
 
         // if no collision from raycast, move sprite
         if (hit.collider == null)
         {
-            transform.Translate(0, moveDelta.y * Time.deltaTime, 0);
+            transform.Translate(0, moveDelta.y * moveMultiplier * Time.deltaTime, 0);
         }
 
         // raycast (X-AXIS)
@@ -51,14 +52,14 @@ public class Player : MonoBehaviour
             boxCollider.size,
             0,
             new Vector2(moveDelta.x, 0),
-            Mathf.Abs(moveDelta.x * Time.deltaTime),
+            Mathf.Abs(moveDelta.x * moveMultiplier * Time.deltaTime),
             LayerMask.GetMask("Actor", "Blocking")
         );
 
         // if no collision from raycast, move sprite
         if (hit.collider == null)
         {
-            transform.Translate(moveDelta.x * Time.deltaTime, 0, 0);
+            transform.Translate(moveDelta.x * moveMultiplier * Time.deltaTime, 0, 0);
         }
 
     }
