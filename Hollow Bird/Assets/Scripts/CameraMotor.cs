@@ -10,7 +10,10 @@ public class CameraMotor : Movement
 
     protected override void Start()
     {
-        blockingMasks = new []{"Border"};
+        base.Start();
+
+        blockingMasks = new string[]{"Border"};
+        transform.position = new Vector3(lookAt.position.x, lookAt.position.y, transform.position.z);
     }
     // Late Update is called AFTER Update and Fixed Update
     private void LateUpdate()
@@ -51,6 +54,7 @@ public class CameraMotor : Movement
         }
 
         // move camera
-        transform.position += new Vector3(delta.x, delta.y, 0);
+        MoveDirection(new Vector2(delta.x, delta.y), false);
+        // transform.position += new Vector3(delta.x, delta.y, 0);
     }
 }
