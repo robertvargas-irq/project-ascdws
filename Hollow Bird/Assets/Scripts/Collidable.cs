@@ -51,7 +51,7 @@ public class Collidable : MonoBehaviour
         Debug.Log(collider.name);
 
         // show message if not already shown
-        if (!messageShown && collider.name == "Player")
+        if (!messageShown)
             GameManager.instance.ShowText("I'm a cat.... I think",25,Color.red,transform.position,Vector3.up * 50,1.5f);
         messageShown = true;
     }
