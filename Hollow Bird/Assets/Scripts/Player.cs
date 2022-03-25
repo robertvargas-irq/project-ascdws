@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     // health for player
     public int maxHealth = 20;
     public int currentHealth;
+    public Inventory inventory = new Inventory();
 
     // Start is called before the first frame update
     private void Start()
@@ -22,6 +23,8 @@ public class Player : MonoBehaviour
         // set health for player upon start
         currentHealth = maxHealth;
         HealthBar.SetMaxHealth(maxHealth);
+
+
     }
 
     private void FixedUpdate()
