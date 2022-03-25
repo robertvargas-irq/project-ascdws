@@ -7,13 +7,15 @@ public class CameraMotor : Movement
     public Transform lookAt; // allows for dynamic focus
     public float boundX = 0.15f;
     public float boundY = 0.05f;
+    public float panicDistance = 2;
+    public float panicEnd = 0;
 
     protected override void Start()
     {
         base.Start();
 
         blockingMasks = new string[]{"Border"};
-        transform.position = new Vector3(lookAt.position.x, lookAt.position.y, transform.position.z);
+        // transform.position = new Vector3(lookAt.position.x, lookAt.position.y, transform.position.z);
     }
     // Late Update is called AFTER Update and Fixed Update
     private void LateUpdate()
@@ -52,6 +54,19 @@ public class CameraMotor : Movement
                 delta.y = deltaY + boundY;
             }
         }
+
+        // !PANIC: If player is too far from camera disable collision for a brief moment
+        if (Mathf.Abs(deltaX) > Mathf.Abs(boundX) + panicDistance || Mathf.Abs(deltaY) > Mathf.Abs(boundY) + panicDistance)
+        {
+            collisions = false;
+            panicEnd = 1 + Time.fixedTime;
+            Debug.Log("PANIC!!!" + "deltaX:" + deltaX + "> boundX*2: " + (boundX * 2));
+            Debug.Log("PANIC!!!" + "deltaY:" + deltaY + "> boundY*2: " + (boundY * 2));
+        }
+        else if (Time.fixedTime >= panicEnd)
+            collisions = true;
+        else
+            Debug.Log("PANIC!!!");
 
         // move camera
         MoveDirection(new Vector2(delta.x, delta.y), false);
