@@ -4,7 +4,7 @@ Feast for Crows (working title) is a top-down 2D survival game meant to challeng
 
 ---
 
-## The core mechanics of the game are centered around surviving and escaping from an unknown forest location filled with enemies, and even worse: the environment.<br>Key elements players will need to be mindful of include:
+## The core mechanics of the game are centered around surviving and escaping from an unknown forest location filled with enemies, and even worse: the environment.<br><br>Key elements players will need to be mindful of include:
 
 ### One
 
