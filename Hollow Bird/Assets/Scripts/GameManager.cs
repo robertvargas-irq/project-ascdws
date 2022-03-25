@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
         //     Destory(gameObject);
         //     return;
         // }
+        Screen.SetResolution(800, 600, false, 60);
         instance = this;
         SceneManager.sceneLoaded += LoadState;
         DontDestroyOnLoad(gameObject);
