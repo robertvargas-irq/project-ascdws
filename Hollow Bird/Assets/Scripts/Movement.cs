@@ -13,12 +13,14 @@ public class Movement : MonoBehaviour
     // default movement blockers
     protected virtual void Start()
     {
-        this.blockingMasks = new []{"Actor", "Blocking"};
+        this.boxCollider = GetComponent<BoxCollider2D>();
+        this.blockingMasks = new string[]{"Actor", "Blocking"};
     }
-    public void MoveDirection(Vector2 moveDelta)
+    public void MoveDirection(Vector2 moveDelta, bool normalized = true)
     {
         // normalize inputs
-        moveDelta.Normalize();
+        if (normalized)
+            moveDelta.Normalize();
         
         // swap sprite direction based on direction
         if (moveDelta.x > 0)
