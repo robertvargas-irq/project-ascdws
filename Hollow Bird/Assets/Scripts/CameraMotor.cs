@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraMotor : MonoBehaviour
+public class CameraMotor : Movement
 {
     public Transform lookAt; // allows for dynamic focus
     public float boundX = 0.15f;
     public float boundY = 0.05f;
 
+    protected override void Start()
+    {
+        blockingMasks = new []{"Border"};
+    }
     // Late Update is called AFTER Update and Fixed Update
     private void LateUpdate()
     {
