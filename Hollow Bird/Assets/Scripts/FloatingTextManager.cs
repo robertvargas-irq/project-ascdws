@@ -23,7 +23,7 @@ public class FloatingTextManager : MonoBehaviour
         floatingText.txt.fontSize = fontSize;
         floatingText.txt.color = color;
 
-        floatingText.go.transform.position = Camera.main.WorldToScreenPoint(position); //transfer world space to screen space so we can use it in UI 
+        floatingText.go.transform.position = Camera.main.WorldToScreenPoint(position); // transfer world space to screen space so we can use it in UI 
         floatingText.motion = motion;
         floatingText.duration = duration;
 
