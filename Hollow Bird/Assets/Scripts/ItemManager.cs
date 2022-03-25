@@ -2,19 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : Collectable
+public class ItemManager : Collectable
 {
-    // key classes
-    enum KeyTypes {
-        NotAKey,
-        RegularChest,
-        DarkChest
-
-    }
-    KeyTypes keyType = KeyTypes.RegularChest; // 0: not a key; 1->n specific key types
-    public int weight = 0;  // weight of the item
+    private ItemInfo info; // information
     public string itemName;
+    public int weight;
+    public ItemInfo.KeyTypes keyType;
+    protected override void Start() 
+    {
+        base.Start();
 
+        info = new ItemInfo(keyType, weight, itemName);
+    }
     protected override void OnCollide(Collider2D collider)
     {
         if (collider.name == "Player")
@@ -35,6 +34,6 @@ public class Item : Collectable
     protected override void OnCollect()
     {
         base.OnCollect();
-        Destroy(this, 1);
+        Destroy(this, 0.1F);
     }
 }
