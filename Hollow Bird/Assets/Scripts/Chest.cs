@@ -12,7 +12,7 @@ public class Chest : Collectable
     public Sprite emptyChest;
     public bool locked = true; // lock state
     public string[] itemsHeld;
-
+    public bool pause = false;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -46,14 +46,14 @@ public class Chest : Collectable
         if (Input.GetButton("Fire3"))
         {
             locked = false;
-            GameManager.instance.ShowText("That branch seemed to do the trick-!",15,Color.green,collider.transform.position,Vector3.up * 50,1.5f);
+            GameManager.instance.ShowText("That branch seemed to do the trick-!",15,Color.green,collider.transform.position,Vector3.zero,1.5f);
             return;
         }
         
         // if locked, show locked message
-        if (!messageShown)
+        if (locked && !messageShown)
         {
-            GameManager.instance.ShowText("It seems to be locked...",15,Color.yellow,collider.transform.position,Vector3.up * 50,1.5f);
+            GameManager.instance.ShowText("It seems to be locked...",15,Color.yellow,collider.transform.position  - Vector3.down * 0.1f,Vector3.zero,1.5f);
             messageShown = true;
         }
     }
@@ -82,9 +82,14 @@ public class Chest : Collectable
 
         // show rewards
         string itemList = "";
-        foreach (string item in itemsHeld) itemList += item + ", ";
+        float offset = 0.4f;
+        foreach (string item in itemsHeld)
+        {
+            GameManager.instance.ShowText("" + item + "!",15,Color.magenta,transform.position,Vector3.up + new Vector3(0, offset++, 0) * 0.5f * 50,1.5f);
+            itemList += item + ", ";
+        }
         itemList.Substring(0, itemList.Length - 2);
-        GameManager.instance.ShowText("Collected " + itemList + "!",15,Color.magenta,transform.position,Vector3.up * 0.5f * 50,1.5f);
+        // GameManager.instance.ShowText("Collected " + itemList + "!",15,Color.magenta,transform.position,Vector3.up * 0.5f * 50,1.5f);
     }
 }
 
