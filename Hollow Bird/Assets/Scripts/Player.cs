@@ -8,11 +8,20 @@ public class Player : MonoBehaviour
     private Vector3 moveDelta;
     private RaycastHit2D hit;
     public float moveMultiplier = 1;
+    public HealthBar HealthBar;
+
+    // health for player
+    public int maxHealth = 20;
+    public int currentHealth;
 
     // Start is called before the first frame update
     private void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
+
+        // set health for player upon start
+        currentHealth = maxHealth;
+        HealthBar.SetMaxHealth(maxHealth);
     }
 
     private void FixedUpdate()
@@ -42,9 +51,7 @@ public class Player : MonoBehaviour
 
         // if no collision from raycast, move sprite
         if (hit.collider == null)
-        {
             transform.Translate(0, moveDelta.y * moveMultiplier * Time.deltaTime, 0);
-        }
 
         // raycast (X-AXIS)
         hit = Physics2D.BoxCast(
@@ -63,9 +70,24 @@ public class Player : MonoBehaviour
         }
 
     }
+
+    // input damage to player or NPC
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        
+        // set damage to healthbar
+        HealthBar.SetHealth(currentHealth);
+        GameManager.instance.ShowText("That hurt.... :(", 25, Color.red, transform.position, Vector3.up * 50,.5f);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+        // tester for damage
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(2);
+        }
     }
 }
