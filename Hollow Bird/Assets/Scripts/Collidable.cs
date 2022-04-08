@@ -20,7 +20,7 @@ public class Collidable : MonoBehaviour
     {
         // collision
         boxCollider.OverlapCollider(filter, hits);
-        bool arrayWasEmpty = true; // becomes false if any value other than null appears
+        bool playerCollided = true; // becomes false if any value other than null appears
         
         for (int i = 0; i < hits.Length; i++)
         {
@@ -29,18 +29,17 @@ public class Collidable : MonoBehaviour
                 continue;
             
             // non-null value found, flip to false filtering out camera
-            if (hits[i].name != "Main Camera" && hits[i].name != "NotCollectedBlocker")
-                arrayWasEmpty = false;
+            if (hits[i].name == "Player")
+                playerCollided = false;
 
             // call collision script
             OnCollide(hits[i]);
             
-
             // clean up array
             hits[i] = null;
         }
 
-        if (arrayWasEmpty) messageShown = false;
+        if (playerCollided) messageShown = false;
     }
 
     /// <summary>
@@ -49,12 +48,8 @@ public class Collidable : MonoBehaviour
     /// <param name="collider">Array of objects that have collided with this object on the current frame.</param>
     protected virtual void OnCollide(Collider2D collider)
     {   
-        // Debug.Log(collider.name);
-
-        // show TEST message if not already shown
+        // filter out only Players, or return on messageShown
         if (messageShown || collider.name != "Player") return;
-        
-        GameManager.instance.ShowText("I'm a cat.... I think",25,Color.red,transform.position,Vector3.up * 50,1.5f);
         messageShown = true;
     }
 }
