@@ -4,6 +4,15 @@ Feast for Crows (working title) is a top-down 2D survival game meant to challeng
 
 ---
 
+## HOW TO RUN ME
+1. Unzip the folder using your favorite zip manager; WinRAR or 7zip will do just fine.
+
+2. Double-click into the extracted folder.
+
+3. Double-click the `Starting2D.exe` executable, and have fun! All files are configured by Unity, and all the necessary libraries are ready to go!
+
+---
+
 ## The core mechanics of the game are centered around surviving and escaping from an unknown forest location filled with enemies, and even worse: the environment.<br><br>Key elements players will need to be mindful of include:
 
 ### One
