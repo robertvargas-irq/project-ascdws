@@ -12,6 +12,7 @@ public class InventoryManager : MonoBehaviour
     // ! TESTING START
     public void Start()
     {
+        Debug.Log("Current Weight: " + currentCarryWeight + " / " + maxCarryWeight);
         // for (int i = 0; i < 35; i++)
         //     GiveItem(0);
         // RemoveItem(0);
