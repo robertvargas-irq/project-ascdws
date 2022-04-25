@@ -8,11 +8,11 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     private void Awake()
     {
-        // if(GameManger.instance != null)
-        // {
-        //     Destory(gameObject);
-        //     return;
-        // }
+        if(GameManager.instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Screen.SetResolution(800, 600, false, 60);
         instance = this;
         SceneManager.sceneLoaded += LoadState;
@@ -22,8 +22,6 @@ public class GameManager : MonoBehaviour
     //Resources
     public List<Sprite> playerSprites;
     public List<Sprite> weaponSprites;
-    public List<int> weaponPrices;
-    public List<int> xpTable;
     public ItemDatabase itemDatabase;
 
     // - - - PREFERRED PRONOUNS - - -
@@ -49,6 +47,7 @@ public class GameManager : MonoBehaviour
 
     // - - - GAMEOBJECT REFERENCES - - -
     public Player player;
+    public CharacterMenu characterMenu;
     //public weapon weapon... 
 
     public FloatingTextManager floatingTextManager;
@@ -61,26 +60,35 @@ public class GameManager : MonoBehaviour
         floatingTextManager.Show(msg,fontSize,color,position,motion,duration);
     }
 
+    //Health
+    //Thirst
     public void SaveState()
     {
+        Debug.Log("Saved");
         string s = "";
         
-        s += "0" + "|";
-        //s += pesos.ToString() + "|";
-        //s += experience.ToString() + "|";
+        s += player.currentHealth.ToString() + "|";
+        s += player.currentThirst.ToString() + "|";
+        s += characterMenu.getCharSelection() + "|";
         s += "0";
+        Debug.Log(player.currentHealth.ToString());
+        Debug.Log(player.currentThirst.ToString());
 
         PlayerPrefs.SetString("SaveState", s);
+        Debug.Log(PlayerPrefs.GetString("SaveState"));
     }
     
     public void LoadState(Scene s, LoadSceneMode mode)
-    {
-        SceneManager.sceneLoaded  -= LoadState;
+    {   
         if(!PlayerPrefs.HasKey("SaveState"))
             return;
+        Debug.Log(PlayerPrefs.GetString("SaveState"));
         string[] data = PlayerPrefs.GetString("SaveState").Split('|');
-
+        Debug.Log(data[0] + " " + data[1]);
         //change player skin
+        player.currentHealth = int.Parse(data[0]);
+        player.currentThirst = int.Parse(data[1]);
+        characterMenu.setCharSelection(int.Parse(data[2]));
         // ! IMPLEMENT ME
 
         Debug.Log("LoadState"); 
