@@ -19,6 +19,8 @@ public class Player : Movement
     public float regenRate = 3.0f; // base health regen
     public float regeneration = 1; // amount healed based on time and debuff
 
+    private SpriteRenderer spriteRenderer;
+   
     public InventoryManager inventory;
     public ItemDatabase itemDatabase;
 
@@ -29,13 +31,16 @@ public class Player : Movement
         base.Start();
 
         // set health for player upon start
-        currentHealth = maxHealth;
+        HealthBar.SetHealth(currentHealth);
         HealthBar.SetMaxHealth(maxHealth);
 
-        currentThirst = maxThirst;
+        ThirstBar.SetThirst(currentThirst);
         ThirstBar.SetMaxThirst(maxThirst);
 
+        ThirstHealthDebuf();
 
+        //renders the sprite upon start
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -95,23 +100,24 @@ public class Player : Movement
         // return rate based on increments of 25 thirst
         if(currentThirst > 75)
         {
-            return 3.0f;
+            regenRate = 3.0f;
         }
         else if (currentThirst <= 75 && currentThirst > 50 ) 
         {
-            return 4.5f;
+            regenRate = 4.5f;
         }
         else if (currentThirst <= 50 && currentThirst > 25 ) 
         {
-            return 6.75f;
+            regenRate = 6.75f;
         }
         else if (currentThirst <= 25 && currentThirst > 0)
         {
-            return 10.125f;
+            regenRate = 10.125f;
         }
         else {
-            return 100;
+            regenRate = 100;
         }
+        return regenRate;
     }
 
     // Regenerate health over an interval defined by the current thirst
@@ -132,6 +138,7 @@ public class Player : Movement
 
     // Update is called once per frame
     void Update()
+
     {
         // tester for damage
         if (Input.GetKeyDown(KeyCode.Space))
@@ -142,17 +149,23 @@ public class Player : Movement
         HealthRegen(); // call regen health
 
         // tester for thirst down
-        if (Input.GetKeyDown(KeyCode.KeypadMinus))
+        if (Input.GetKeyDown(KeyCode.Minus))
         {
-            BecomeThirst(5);
+            BecomeThirst(25);
         }
 
         // tester for thirst
-        if (Input.GetKeyDown(KeyCode.KeypadPlus))
+        if (Input.GetKeyDown(KeyCode.Equals))
         {
-            RecoverThirst(5);
+            RecoverThirst(25);
         }
         
         
     }
+
+    public void SwapSprite(int skinID)
+    {
+        spriteRenderer.sprite = GameManager.instance.playerSprites[skinID];
+    }
+
 }
