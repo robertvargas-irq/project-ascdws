@@ -10,9 +10,7 @@ public class ItemDatabase : MonoBehaviour
     // Awake is called upon game start
     void Awake()
     {
-        Debug.Log("- - - BUILDING DATABASE - - -");
         BuildDatabase();
-        Debug.Log("- - - DATABASE BUILT SUCCESSFULLY - - -");
     }
 
     // Get item by ID
