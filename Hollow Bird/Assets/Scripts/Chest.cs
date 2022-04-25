@@ -11,7 +11,8 @@ public class Chest : Collectable
 {
     public Sprite emptyChest;
     public bool locked = true; // lock state
-    public List<Item> itemsHeld = new List<Item>();
+    private List<Item> itemsHeld = new List<Item>();
+    public List<int> itemsHeldIds = new List<int>();
     public bool pause = false;
     public bool specialChest = false; // will indicate the need for a special key
     public int unlockKeyId = 0;       // 0: Silver | 1: Blue
@@ -31,7 +32,6 @@ public class Chest : Collectable
 
         // assign key type needed for unlock
         if (specialChest) unlockKeyId = 1;
-        else unlockKeyId = 0;
 
         // ! TEST INPUT
         if (gameObject.name == "Chest")

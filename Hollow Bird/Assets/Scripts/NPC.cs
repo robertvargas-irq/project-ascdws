@@ -11,6 +11,7 @@ public class NPC : Movement
     public bool focusing;    // if focusing on target, will move sprite to look at target
     public bool limitedRange; // if range is limited
     public float range = 1.0f; // range if limited
+    public int maxHealth;
     public int health;
     public bool standingStill;
     private Sprite facingForward;

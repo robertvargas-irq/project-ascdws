@@ -20,7 +20,7 @@ public class Collidable : MonoBehaviour
     {
         // collision
         boxCollider.OverlapCollider(filter, hits);
-        bool playerCollided = false; // becomes false if any value other than null appears
+        bool playerCollided = true; // becomes false if any value other than null appears
         
         for (int i = 0; i < hits.Length; i++)
         {
@@ -30,7 +30,7 @@ public class Collidable : MonoBehaviour
             
             // non-null value found, flip to false filtering out camera
             if (hits[i].name == "Player")
-                playerCollided = true;
+                playerCollided = false;
 
             // call collision script
             OnCollide(hits[i]);
@@ -39,7 +39,7 @@ public class Collidable : MonoBehaviour
             hits[i] = null;
         }
 
-        if (!playerCollided) messageShown = false;
+        if (playerCollided) messageShown = false;
     }
 
     /// <summary>
