@@ -5,7 +5,7 @@ Feast for Crows (working title) is a top-down 2D survival game meant to challeng
 ---
 
 ## HOW TO RUN ME
-1. Unzip the DEMO2.zip folder using your favorite zip manager; WinRAR or 7zip will do just fine.
+1. Unzip the DEMO3.zip folder using your favorite zip manager; WinRAR or 7zip will do just fine.
 
 2. Double-click into the extracted folder.
 
