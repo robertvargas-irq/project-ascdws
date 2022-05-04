@@ -4,7 +4,21 @@ Feast for Crows (working title) is a top-down 2D survival game meant to challeng
 
 ---
 
+## PROJECT STRUCTURE AND NAVIGATION
+
+All the scripts for the game are within "Hollow Bird/Assets/Scripts" and includes all of the functionality for our project.
+
+Scripts that extend `MonoBehavior` are base, core scripts that are extended upon, specifically those that contain "`virtual`" methods that can be overridden.
+
+While the source assets are not readily available, along with the scene objects, these Scripts can be placed in one's own Unity project as long as the unity GameObjects are created with the proper Collision Boxes if required by the script.
+
+---
+
+
 ## HOW TO RUN ME
+
+> There is no way to create the binaries on your own as the only files managed by Git and uploaded to the repository are the Scripts for in-game functionality, not the actual scenes or assets to create and build the project on one's own.
+
 1. Unzip the DEMO3.zip folder using your favorite zip manager; WinRAR or 7zip will do just fine.
 
 2. Double-click into the extracted folder.
