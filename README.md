@@ -64,7 +64,7 @@ Once you've done all that, you are fully ready to begin working right where we l
 ---
 
 
-## HOW TO RUN ME AS A USER
+## HOW TO RUN ME AS AN END-USER
 
 > There is no way to create the binaries on your own as the only files managed by Git and uploaded to the repository are the Scripts for in-game functionality, not the actual scenes or assets to create and build the project on one's own.
 
