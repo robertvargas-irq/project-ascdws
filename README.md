@@ -14,8 +14,57 @@ While the source assets are not readily available, along with the scene objects,
 
 ---
 
+## HOW TO PICK UP WHERE WE LEFT OFF
 
-## HOW TO RUN ME
+### (1) Getting your workspace ready.
+
+**! THE GIT REPOSITORY LIVES --ONE DIRECTORY ABOVE THE ACTUAL UNITY PROJECT FOLDER-- !**
+
+You MUST clone the repository first (based on the release that was given to make sure the project files in the .ZIP line up with the given release's scripts).
+- This can be done by adding a `-b` argument with a companion tag.
+  * I.E. If you are working with `v1.0.2`, you would clone via either of the following commands:
+    - `git clone https://github.com/robertvargas-irq/project-ascdws.git -b v1.0.2`
+    - `git clone -b v1.0.2 https://github.com/robertvargas-irq/project-ascdws.git`
+
+Following that, you should see 3 files and 1 directory appear.
+- {dir/} "Hollow Bird"  <---- this folder will be replaced later
+- {file} .gitignore
+- {file} peereval-Insufficient_RAM-matrom01-v2.csv
+- {file} README.md
+
+Once those appear, download the .ZIP file {`Hollow.Bird.zip`} from the attached binaries of any release you wish to work from.
+Included should be the project root folder for Unity: "Hollow Bird"
+
+Finally, delete the "Hollow Bird" directory from the `git clone` from the previous step, and replace it with the "Hollow Bird" directory located within the .ZIP file.
+
+
+
+### (2) Importing into Unity
+
+Key Items:
+- This guide was made with Unity Hub v3.1.2 in mind.
+- The game was created with Unity Editor `2020.3.30f1`, but should port easily to later versions.
+
+<br>
+
+Open up Unity Hub, and navigate to the "Projects" tab.
+
+Once there, find the "Open" button with a dropdown arrow to its right. Click the dropdown to open it, and the following two options will appear:
+- Add project from disk
+- Open remote project
+
+Click "Add project from disk" then navigate to the folder where you cloned the repository at a given release tag.
+
+At this point, you should have the full Unity project root with all the assets and scripts, along with Git properly set up to watch for changes. If you do not, please follow the instructions above labeled `(1) Getting your workspace ready`.
+
+Click on the "Hollow Bird" folder that replaced the `git clone` version, and import it into Unity Hub.
+
+Once you've done all that, you are fully ready to begin working right where we left off! 🎉
+
+---
+
+
+## HOW TO RUN ME AS A USER
 
 > There is no way to create the binaries on your own as the only files managed by Git and uploaded to the repository are the Scripts for in-game functionality, not the actual scenes or assets to create and build the project on one's own.
 
