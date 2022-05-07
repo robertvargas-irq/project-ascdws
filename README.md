@@ -10,7 +10,7 @@ All the scripts for the game are within "Hollow Bird/Assets/Scripts" and include
 
 Scripts that extend `MonoBehavior` are base, core scripts that are extended upon, specifically those that contain "`virtual`" methods that can be overridden.
 
-While the source assets are not readily available, along with the scene objects, these Scripts can be placed in one's own Unity project as long as the unity GameObjects are created with the proper Collision Boxes if required by the script.
+While the source assets are not readily available from a simple `git clone` (see HOW TO PICK UP WHERE WE LEFT OFF below in order to get the entire project root), along with the scene objects, these Scripts can be placed in one's own Unity project as long as the unity GameObjects are created with the proper Collision Boxes if required by the script.
 
 ---
 
