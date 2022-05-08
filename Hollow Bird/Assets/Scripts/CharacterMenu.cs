@@ -15,7 +15,8 @@ public class CharacterMenu : MonoBehaviour
         OnSelectionChange();
     }
 
-    //Character Selection
+    // Character Selection
+    // This method will change the skin one up in the array if the right arrow is clicked, or one down in the array if not right.
     public void OnArrowClick(bool right)
     {
         if(right)
@@ -50,25 +51,28 @@ public class CharacterMenu : MonoBehaviour
         currentCharacterSelection = s;
     }
 
+    //Will swap the skins
     private void OnSelectionChange()
     {
         characterSelectionSprite.sprite = GameManager.instance.playerSprites[currentCharacterSelection];
         GameManager.instance.player.SwapSprite(currentCharacterSelection);
     }
 
+    //THis is for weapon upgrades but has not been implemented yet
     public void OnUpgradeClick()
     {
         //leave empty for now
 
     }
-
+    
+    //THis will update all references of a menu. Health , thirst, and regen rate will be updated when the menu opens up.
     public void UpdateMenu()
     {
-        //wepaon
-        //wepaonSprite.sprite = Gamemanager.instance.weaponSprites[0];
+        // weapon
+        // weaponSprite.sprite = Gamemanager.instance.weaponSprites[0];
          
 
-        //meta
+        // meta
         hitPointText.text = GameManager.instance.player.currentHealth.ToString();
         thirstText.text = GameManager.instance.player.currentThirst.ToString();
         regenText.text = GameManager.instance.player.regenRate.ToString() + " seconds";

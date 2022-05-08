@@ -10,12 +10,14 @@ public class FloatingTextManager : MonoBehaviour
 
     private List<FloatingText> floatingTexts = new List<FloatingText>();
 
+    //This will update and check if the floating text still needs to be up on screen or not.
     private void Update()
     {
         foreach(FloatingText txt in floatingTexts)
             txt.UpdateFloatingText();
     }
 
+    //This will set the color, fontsize, message, position, motion and duration of the text and show it on screen.
     public void Show(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
     {
         FloatingText floatingText = GetFloatingText();
@@ -31,6 +33,7 @@ public class FloatingTextManager : MonoBehaviour
         
     }
 
+    //This will retrieve the text wanted to show on screen
     private FloatingText GetFloatingText()
     {
         FloatingText txt = floatingTexts.Find(t => !t.active); 

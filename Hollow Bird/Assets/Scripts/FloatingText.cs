@@ -11,7 +11,7 @@ public class FloatingText
     public float duration; 
     public float lastShown;
 
-
+    //This will call the setactive method to set wether the text should still be up or not
     public void Show()
     {
         active = true;
@@ -19,12 +19,14 @@ public class FloatingText
         go.SetActive(active);
     }
 
+    //This will hide the text once the time limit has been reached
     public void Hide()
     {
         active = false;
         go.SetActive(active);
     }
 
+    //This method will make sure to check the time last shown versus the duration wanted and hide it if it has been longer than wanted time
     public void UpdateFloatingText()
     {
         if(!active)

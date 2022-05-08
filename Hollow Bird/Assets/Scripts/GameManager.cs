@@ -6,13 +6,16 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    //This will create a gameObject in game to control behaviors of the gameManager
     private void Awake()
     {
+        
         if(GameManager.instance != null)
         {
             Destroy(gameObject);
             return;
         }
+        //Automatically sets resolution on Awake
         Screen.SetResolution(800, 600, false, 60);
         instance = this;
         SceneManager.sceneLoaded += LoadState;
@@ -55,6 +58,7 @@ public class GameManager : MonoBehaviour
     // - - - SAVE STATE - - -
 
     // - - - FLOATING TEXT - - -
+    // Method to output text
     public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
     {
         floatingTextManager.Show(msg,fontSize,color,position,motion,duration);
@@ -66,9 +70,11 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Saved");
         string s = "";
-        
+        //Saves the players current Health
         s += player.currentHealth.ToString() + "|";
+        //Saves the players currentThirst
         s += player.currentThirst.ToString() + "|";
+        //Saves the current players skin
         s += characterMenu.getCharSelection() + "|";
         s += "0";
         Debug.Log(player.currentHealth.ToString());
@@ -86,10 +92,12 @@ public class GameManager : MonoBehaviour
         string[] data = PlayerPrefs.GetString("SaveState").Split('|');
         Debug.Log(data[0] + " " + data[1]);
         //change player skin
+        //This will load the players saved health
         player.currentHealth = int.Parse(data[0]);
+        //Load players saved thirst
         player.currentThirst = int.Parse(data[1]);
+        //Set the players saved  skin
         characterMenu.setCharSelection(int.Parse(data[2]));
-        // ! IMPLEMENT ME
 
         Debug.Log("LoadState"); 
     }
